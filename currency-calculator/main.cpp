@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <curl/curl.h>
+#include "DataService.h"
 #include "server_http.hpp"
 
 using namespace std;
@@ -12,21 +13,8 @@ static size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *use
 }
 
 int main() {
-	CURL *curl;
-	CURLcode res;
-	std::string readBuffer;
-
-	curl = curl_easy_init();
-	if (curl) {
-		curl_easy_setopt(curl, CURLOPT_URL, "https://cinkciarz.pl/kantor/kursy-walut-cinkciarz-pl");
-		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
-		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
-		res = curl_easy_perform(curl);
-		curl_easy_cleanup(curl);
-
-		std::cout << readBuffer << std::endl;
-	}
-
+	std::string val= DataService::getDataFromUrl("https://www.google.pl/");
+	cout << val;
 	system("PAUSE");
 
 	return 0;
