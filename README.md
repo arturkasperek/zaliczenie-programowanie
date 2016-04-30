@@ -1,6 +1,6 @@
 Project requirements
 =============
-To run project You need Windows 7 or highter version. You also need Visual Studio Communnity(free version). 
+To run project You need Windows 7 or highter version and Chrome browser. You also need Visual Studio Communnity(free version). 
 
 Boost install
 =============
