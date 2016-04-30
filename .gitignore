@@ -3,3 +3,7 @@
 /**/Debug
 *.suo
 /**/.vs
+/currency-calculator/cinkciarzData.json
+/currency-calculator/.vs
+*.VC.db
+*.VC.opendb
