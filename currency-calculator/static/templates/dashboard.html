@@ -12,16 +12,23 @@
                 </section>
                 <section id="amount-select">
                     <div class="section-description">Ilość</div>
-                    <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1">
+                    <input ng-model="selectedCurrencyAmount" type="number" class="form-control" placeholder="" aria-describedby="basic-addon1">
                 </section>
                 <section id="course-select">
                     <div class="section-description">Kurs</div>
                     <input ng-model="selectedCurrencyCourse" type="number" class="form-control" placeholder="" aria-describedby="basic-addon1">
                 </section>
                 <section id="add-currency-submit">
-                    <button class="btn-primary btn">Dodaj</button>
+                    <button data-toggle="modal" data-target="#add-currency-modal" ng-click="addCurrencyTransaction(selectedCurrency.Currency.name, selectedCurrencyAmount, selectedCurrencyCourse)" class="btn-primary btn">Dodaj</button>
                 </section>
             </div>
+        </div>
+    </div>
+    <div class="transactions-container">
+        <div ng-repeat="transaction in transactions">
+            <p>{{ transaction.currency }}</p>
+            <p>{{ transaction.amount }}</p>
+            <p>{{ transaction.rate }}</p>
         </div>
     </div>
     <div class="currencies-container">
