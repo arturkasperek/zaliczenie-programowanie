@@ -1,0 +1,64 @@
+.currencies-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.currencies-container .currency-tile {
+    text-align: center;
+    background-color: #43A047;
+    margin: 1em;
+    width: calc(20% - 8em/5);
+    border-radius: 0.2em;
+}
+
+.currencies-container .currency-tile:nth-child(5n + 1) {
+    margin-left: 0;
+}
+
+.currencies-container .currency-tile:nth-child(5n) {
+    margin-right: 0;
+}
+
+.currencies-container .currency-tile .currency-wrapper {
+    text-align: left;
+}
+
+.currencies-container .currency-tile .currency-wrapper .name-wrapper {
+    text-align: center;
+    font-size: 150%;
+    font-weight: bold;
+}
+
+#add-currency-modal #currency-select {
+
+}
+
+#add-currency-modal #add-currency-submit button {
+    width: 100%;
+}
+
+#add-currency-modal #add-currency-submit {
+    display: flex;
+    align-items: flex-end;
+}
+
+
+
+#add-currency-modal select {
+
+}
+
+#add-currency-modal .modal-content {
+    display: flex;
+    padding: 2em;
+}
+
+#add-currency-modal .modal-content section {
+    width: 25%;
+}
+
+#add-currency-modal .section-description {
+    font-weight: bold;
+    font-size: 115%;
+    margin: 0.5em;
+}

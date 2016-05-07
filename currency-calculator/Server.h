@@ -3,7 +3,9 @@
 #include <vector>
 #include <algorithm>
 #include <iostream>
+#include <regex>
 #include <boost/filesystem.hpp>
+
 #include "server_http.hpp"
 
 typedef SimpleWeb::Server<SimpleWeb::HTTP> HttpServer;
@@ -31,16 +33,24 @@ public:
 	}
 
 	void serveStatic(std::string pathToStatic) {
-		server->default_resource["GET"] = [pathToStatic](Response& response, std::shared_ptr<Request> request) {
-			auto requestPath = request->path;
-			auto resourceUrl = pathToStatic + request->path;
-			ifstream resource(resourceUrl.c_str());
+		std::regex indexRequestRegex("/$");
 
-			if (resource.good()) {
+		server->default_resource["GET"] = [pathToStatic, indexRequestRegex](Response& response, std::shared_ptr<Request> request) {
+			auto requestPath = request->path;
+
+			if (std::regex_match(requestPath, indexRequestRegex)) {
+				requestPath += "index.html";
+			}
+
+			auto resourceUrl = pathToStatic + requestPath;
+
+			ifstream resourceStream(resourceUrl.c_str());
+
+			if (resourceStream.good()) {
 				std::stringstream buffer;
 				string content;
 
-				buffer << resource.rdbuf();
+				buffer << resourceStream.rdbuf();
 				content = buffer.str();
 
 				response << "HTTP/1.1 200 OK\r\nContent-Length: " << content.length() << "\r\n\r\n" << content;

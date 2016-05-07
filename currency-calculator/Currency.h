@@ -15,7 +15,6 @@ private:
 	string symbol;
 	string name;
 	Rate* rates;
-
 public:
 	Currency(string pSymbol, string pName, Rate* pRates) {
 		symbol = pSymbol;

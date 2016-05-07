@@ -161,6 +161,7 @@
     <ClInclude Include="jsonxx.h" />
     <ClInclude Include="Server.h" />
     <ClInclude Include="server_http.hpp" />
+    <ClInclude Include="Transaction.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

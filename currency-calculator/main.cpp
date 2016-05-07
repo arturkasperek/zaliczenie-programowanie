@@ -22,9 +22,14 @@ int main() {
 		response << "HTTP/1.1 200 OK\r\nContent-Length: " << currencyJSONString.length() << "\r\n\r\n" << currencyJSONString;
 	});
 
+	server->post("add_currency_purchase", [](Response& response, std::shared_ptr<Request> request) {
+		std::string test = "work ok :)";
+		response << "HTTP/1.1 200 OK\r\nContent-Length: " << test.length() << "\r\n\r\n" << test;
+	});
+
 	server->serveStatic("static");
 
-	std::system("start chrome http://localhost:8080/index.html");
+	std::system("start chrome http://localhost:8080/");
 
 	server->start();
 

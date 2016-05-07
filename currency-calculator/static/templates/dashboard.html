@@ -1,0 +1,47 @@
+<div>
+    <div class="control-panel">
+        <button ng-click="openAddCurrencyModal()" data-toggle="modal" data-target="#add-currency-modal" class="btn-primary btn">Kupiłem walutę</button>
+    </div>
+    <div class="modal fade" id="add-currency-modal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <section id="currency-select">
+                    <div class="section-description">Waluta</div>
+                    <select class="form-control" ng-options="option.Currency.name for option in currencies"
+                            ng-model="selectedCurrency" ng-change="selectedCurrencyUpdate()"></select>
+                </section>
+                <section id="amount-select">
+                    <div class="section-description">Ilość</div>
+                    <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1">
+                </section>
+                <section id="course-select">
+                    <div class="section-description">Kurs</div>
+                    <input ng-model="selectedCurrencyCourse" type="number" class="form-control" placeholder="" aria-describedby="basic-addon1">
+                </section>
+                <section id="add-currency-submit">
+                    <button class="btn-primary btn">Dodaj</button>
+                </section>
+            </div>
+        </div>
+    </div>
+    <div class="currencies-container">
+        <div class="currency-tile" ng-repeat="currency in currencies | limitTo:currencyTileAmout">
+            <div class="currency-wrapper">
+                <div class="col-sm-12 name-wrapper">
+                    <span>{{ currency.Currency.name }}</span>
+                </div>
+                <div class="col-sm-6">
+                    Kupno </br>
+                    {{ currency.Currency.ratesA['1'] }}
+                </div>
+                <div class="col-sm-6">
+                    Sprzedasz </br>
+                    {{ currency.Currency.ratesA['2'] }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="show-more-container">
+        <button ng-click="showMoreCurrencies()" class="btn-primary btn center-block">Pokaż więcej</button>
+    </div>
+</div>
