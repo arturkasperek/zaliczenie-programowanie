@@ -14,11 +14,19 @@ class Currency {
 private:
 	string symbol;
 	string name;
-	Rate* rates;
+	vector<Rate>* rates;
 public:
-	Currency(string pSymbol, string pName, Rate* pRates) {
+	Currency(string pSymbol, string pName, vector<Rate>* pRates) {
 		symbol = pSymbol;
 		name = pName;
 		rates = pRates;
+	}
+	
+	vector<Rate>* getRates() {
+		return rates;
+	}
+
+	string getSymbol() {
+		return symbol;
 	}
 };

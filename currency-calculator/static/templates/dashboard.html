@@ -1,5 +1,5 @@
 <div>
-    <div class="control-panel">
+    <div class="control-panel" style="padding: 2em 0em">
         <button ng-click="openAddCurrencyModal()" data-toggle="modal" data-target="#add-currency-modal" class="btn-primary btn">Kupiłem walutę</button>
     </div>
     <div class="modal fade" id="add-currency-modal" role="dialog">
@@ -24,13 +24,29 @@
             </div>
         </div>
     </div>
+    <h3 style="color: #DCEDC8; text-align: center">Lista transakcji</h3>
     <div class="transactions-container">
-        <div ng-repeat="transaction in transactions">
-            <p>{{ transaction.currency }}</p>
-            <p>{{ transaction.amount }}</p>
-            <p>{{ transaction.rate }}</p>
+        <div class="transaction-tile" style="background-color: {{transaction.profit < 0 ? '#E53935' : ''}}" ng-repeat="transaction in transactions">
+            <div class="transaction-wrapper">
+                <div class="col-sm-12 name-wrapper">
+                    <span>{{ transaction.currency }}</span>
+                </div>
+                <div class="col-sm-6">
+                    Ilość </br>
+                    {{ transaction.amount }}
+                </div>
+                <div class="col-sm-6">
+                    Kurs kupna </br>
+                    {{ transaction.rate }}
+                </div>
+                <div class="col-sm-12" style="text-align: center">
+                    <span style="font-weight: bold">{{ transaction.profit < 0 ? 'Straciłeś' : 'Zyskałeś' }}</span></br>
+                    {{ transaction.profit }} zł
+                </div>
+            </div>
         </div>
     </div>
+    <h3 style="color: #DCEDC8; text-align: center">Aktualne kursy</h3>
     <div class="currencies-container">
         <div class="currency-tile" ng-repeat="currency in currencies | limitTo:currencyTileAmout">
             <div class="currency-wrapper">

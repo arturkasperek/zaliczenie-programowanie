@@ -26,12 +26,12 @@ public:
 
 			string	symbol = currency.get<String>("name"),
 				fullName = currency.get<String>("full_name");
+			
+			vector<Rate>* rates = new vector<Rate>();
 
-			Rate rates[] = {
-				{ (float)rateA.get<Number>("1"), (float)rateA.get<Number>("2"), (int)rateA.get<Number>("amount") },
-				{ (float)rateB.get<Number>("1"), (float)rateB.get<Number>("2"), (int)rateB.get<Number>("amount") },
-				{ (float)rateC.get<Number>("1"), (float)rateC.get<Number>("2"), (int)rateC.get<Number>("amount") }
-			};
+			rates->push_back({ (float)rateA.get<Number>("1"), (float)rateA.get<Number>("2"), (int)rateA.get<Number>("amount") });
+			rates->push_back({ (float)rateB.get<Number>("1"), (float)rateB.get<Number>("2"), (int)rateB.get<Number>("amount") });
+			rates->push_back({ (float)rateC.get<Number>("1"), (float)rateC.get<Number>("2"), (int)rateC.get<Number>("amount") });
 
 			currencyObjectsVector.push_back(Currency(symbol, fullName, rates));
 		}

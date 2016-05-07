@@ -13,6 +13,7 @@ angular.module('cinkciarzApp')
         $scope.currencyTileAmout = 10;
         $scope.selectedCurrencyCourse = undefined;
         $scope.transactions = [];
+        $scope.selectedCurrencyAmount = 0;
 
         $scope.showMoreCurrencies = function () {
             $scope.currencyTileAmout += 10;
@@ -25,12 +26,13 @@ angular.module('cinkciarzApp')
         $scope.fetchTransactions = function () {
             $http({method: 'GET', url: 'transactions'}).then(function (resp) {
                 $scope.transactions = resp.data.transactions.map(function (transactionSerialize) {
-                    var splitedTransaction = transactionSerialize.split(' ');
+                    var splittedTransaction = transactionSerialize.split(' ');
 
                     return {
-                        currency: splitedTransaction[0],
-                        amount: splitedTransaction[1],
-                        rate: splitedTransaction[2]
+                        currency: splittedTransaction[0],
+                        amount: splittedTransaction[1],
+                        rate: splittedTransaction[2],
+                        profit: splittedTransaction[3]
                     };
                 });
             });
@@ -38,6 +40,8 @@ angular.module('cinkciarzApp')
 
         $scope.addCurrencyTransaction = function (currencyName, amount, rate) {
             console.log(currencyName, amount, rate);
+            if(amount == null) amount = 0;
+            if(rate == null) rate = 0;
             $http({
                 method: 'POST',
                 url: 'addCurrencyTransaction',
