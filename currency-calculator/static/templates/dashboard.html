@@ -12,7 +12,7 @@
                 </section>
                 <section id="amount-select">
                     <div class="section-description">Ilość</div>
-                    <input ng-model="selectedCurrencyAmount" type="number" class="form-control" placeholder="" aria-describedby="basic-addon1">
+                    <input ng-change="selectedCurrencyAmountChange()" ng-model="selectedCurrencyAmount" type="number" class="form-control" placeholder="" aria-describedby="basic-addon1">
                 </section>
                 <section id="course-select">
                     <div class="section-description">Kurs</div>
@@ -25,6 +25,7 @@
         </div>
     </div>
     <h3 style="color: #DCEDC8; text-align: center">Lista transakcji</h3>
+    <div class="transaction-tile" style="width: 100%; background-color: {{transactionsSumProfit < 0 ? '#D32F2F' : '#689F38'}}; text-align: center; font-weight: 120%"><span>Suma {{transactionsSumProfit <=0 ? 'strat' : 'zysków'}}</span></br><span style="font-weight: bold;">{{transactionsSumProfit}} zł</span></div>
     <div class="transactions-container">
         <div class="transaction-tile" style="background-color: {{transaction.profit < 0 ? '#E53935' : ''}}" ng-repeat="transaction in transactions">
             <div class="transaction-wrapper">

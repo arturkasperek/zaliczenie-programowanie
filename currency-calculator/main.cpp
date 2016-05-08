@@ -48,17 +48,20 @@ int main() {
 		ifstream file("file_db/transactions.txt");
 		bool isFileEmpty = file.peek() == std::ifstream::traits_type::eof() ? true : false;
 		auto currencies = CinkciarzValidator::validDataToCurrencyObject(DataService::getDataFromUrl("https://cinkciarz.pl/currencies/index/5/json"));
+		float transactionsSumProfit = 0;
+
 		while (getline(file, transactionSerialize))
 		{
 			auto transaction = new Transaction(transactionSerialize);
 			auto currency = getSymbolCurrencyObject(currencies, transaction->getCurrencySymbol());
 			auto transactionProfit = transaction->calcActualTransactionState(currency.getRates());
+			transactionsSumProfit += transactionProfit;
 			//cout << transactionProfit << "\n";
 			//cout << transaction->getCurrencySymbol() << "\n";
 			transactionsJSArray += "\"" + transactionSerialize + " " + to_string(transactionProfit) + "\",";
 		}
 		if(!isFileEmpty) transactionsJSArray.pop_back(); //we must delete last ','
-		transactionsJSArray += "]}";
+		transactionsJSArray += "], \"transactionsSumProfit\": " + to_string(transactionsSumProfit) + "}";
 		file.close();
 		response << "HTTP/1.1 200 OK\r\nContent-Length: " << transactionsJSArray.length() << "\r\n\r\n" << transactionsJSArray;
 	});

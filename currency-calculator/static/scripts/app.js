@@ -19,6 +19,27 @@ angular.module('cinkciarzApp')
             $scope.currencyTileAmout += 10;
         };
 
+        $scope.selectedCurrencyAmountChange = function () {
+            var rates = [$scope.selectedCurrency.Currency.ratesA,
+                $scope.selectedCurrency.Currency.ratesB,
+                $scope.selectedCurrency.Currency.ratesC
+            ];
+
+            rates.sort((a, b) => {
+                return a['amount'] - b['amount'];
+            });
+
+            console.log(rates);
+
+            for(var i = 0; i < rates.length; i++) {
+                if($scope.selectedCurrencyAmount < rates[i].amount) {
+                    $scope.selectedCurrencyCourse = rates[i]["1"];
+                    return;
+                }
+            }
+            $scope.selectedCurrencyCourse = rates[2]["1"];
+        };
+
         $scope.selectedCurrencyUpdate = function () {
             $scope.selectedCurrencyCourse = $scope.selectedCurrency.Currency.ratesA['1'];
         };
@@ -35,6 +56,7 @@ angular.module('cinkciarzApp')
                         profit: splittedTransaction[3]
                     };
                 });
+                $scope.transactionsSumProfit = resp.data.transactionsSumProfit;
             });
         };
 
