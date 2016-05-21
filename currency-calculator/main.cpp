@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+
 #include "Server.h"
 #include "CinkciarzValidator.h"
 #include "DataService.h"
@@ -34,7 +35,7 @@ int main() {
 	server->post("addCurrencyTransaction", [&transactionsFile](Response& response, std::shared_ptr<Request> request) {
 		std::string responseText = "",
 					requestTransactionSerialize = request->content.string();
-	
+
 		transactionsFile.open("file_db/transactions.txt", ios_base::app);
 		transactionsFile << requestTransactionSerialize << "\n";
 		transactionsFile.close();
@@ -68,10 +69,12 @@ int main() {
 
 	server->serveStatic("static");
 
+#ifdef __linux__
+	std::system("google-chrome-stable http://localhost:8080/");
+#elif _WIN32
 	std::system("start chrome http://localhost:8080/");
+#endif
 
 	server->start();
-
-
 	return 0;
 }

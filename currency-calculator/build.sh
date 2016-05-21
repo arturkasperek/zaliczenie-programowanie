@@ -1,0 +1,1 @@
+g++ -I"/usr/include" main.cpp jsonxx.cpp -o cinkciarzApp -std=c++14 -L"/usr/lib/" -lboost_filesystem -lboost_regex -lboost_coroutine -lboost_system -lpthread -lcurl
