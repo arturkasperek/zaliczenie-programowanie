@@ -1,3 +1,6 @@
+/* 
+https://github.com/eidheim/Simple-Web-Server
+ */
 #ifndef SERVER_HTTP_HPP
 #define	SERVER_HTTP_HPP
 
