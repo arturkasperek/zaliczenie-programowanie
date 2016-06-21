@@ -35,15 +35,15 @@
                     <span>{{ transaction.currency }}</span>
                 </div>
                 <div class="col-sm-6">
-                    Ilość </br>
+                    Posdiadana ilość </br>
                     {{ transaction.amount }}
                 </div>
                 <div class="col-sm-6">
-                    Kurs kupna </br>
+                    Kurs sprzedaży </br>
                     {{ transaction.rate }}
                 </div>
                 <div class="col-sm-12" style="text-align: center">
-                    <span style="font-weight: bold">{{ transaction.profit < 0 ? 'Straciłeś' : 'Zyskałeś' }}</span></br>
+                    <span style="font-weight: bold">{{ transaction.profit < 0 ? 'Strata' : 'Zysk' }}</span></br>
                     {{ transaction.profit }} zł
                 </div>
             </div>
@@ -61,7 +61,7 @@
                     {{ currency.Currency.ratesA['1'] }}
                 </div>
                 <div class="col-sm-6">
-                    Sprzedasz </br>
+                    Sprzedaż </br>
                     {{ currency.Currency.ratesA['2'] }}
                 </div>
             </div>
