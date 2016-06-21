@@ -6,19 +6,20 @@
 #include "Currency.h"
 using namespace std;
 
-class Transaction {
+class Transaction{
 private:
 	std::string currencySymbol;
 	float amount;
 	float course;
 public:
-	Transaction(std::string pCurrencyName, float pAmount, float pCourse) {
+	Transaction(std::string pCurrencyName, float pAmount, float pCourse)
+	{
 		currencySymbol = pCurrencyName;
 		amount = pAmount;
 		course = pCourse;
 	}
-	
-	Transaction(std::string serializeObject) {
+	Transaction(std::string serializeObject)
+	{
 		vector<string> splittedTransaction;
 		boost::split(splittedTransaction, serializeObject, boost::is_any_of("\t "));
 		currencySymbol = splittedTransaction[0];
@@ -26,24 +27,20 @@ public:
 		course = stof(splittedTransaction[2]);
 	}
 
-	string getCurrencySymbol() {
-		return currencySymbol;
-	}
+	string getCurrencySymbol() {return currencySymbol;}
+	float getAmount() {return amount;}
 
-	float getSalePrice(vector<Rate>* rates) {
+	float getSalePrice(vector<Rate>* rates)
+	{
 		int searchAmount = amount <= 10 ? 10: 1000;
 		searchAmount = amount <= 50000 ? 50000 : searchAmount;
 
-		for (int x = 0; x < 3; x++) {
+		for(int x = 0; x < 3; x++)
+		{
 			Rate rate = rates->at(x);
-
-			if ( rate.amount == searchAmount) {
-				return rate.salePrice;
-			}
+			if( rate.amount == searchAmount) return rate.salePrice;
 		}
 	}
 
-	float calcActualTransactionState(vector<Rate>* actualCurrencyRates) {
-		return (amount * getSalePrice(actualCurrencyRates)) - (amount * course);
-	}
+	float calcActualTransactionState(vector<Rate>* actualCurrencyRates) {return (amount * getSalePrice(actualCurrencyRates)) - (amount * course);}
 };
