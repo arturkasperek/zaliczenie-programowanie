@@ -1,8 +1,9 @@
 <div>
     <div class="control-panel" style="padding: 2em 0em">
-        <button ng-click="openAddCurrencyModal()" data-toggle="modal" data-target="#add-currency-modal" class="btn-primary btn">Kupiłem walutę</button>
+        <button ng-click="transactionMode='buy'" data-toggle="modal" data-target="#currency-transaction-modal" class="btn-primary btn">Kupiłem walutę</button>
+        <button ng-click="transactionMode='sell'" data-toggle="modal" data-target="#currency-transaction-modal" class="btn-primary btn">Sprzedaję walutę</button>
     </div>
-    <div class="modal fade" id="add-currency-modal" role="dialog">
+    <div class="modal fade" id="currency-transaction-modal" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <section id="currency-select">
@@ -19,7 +20,8 @@
                     <input ng-model="selectedCurrencyCourse" type="number" class="form-control" placeholder="" aria-describedby="basic-addon1">
                 </section>
                 <section id="add-currency-submit">
-                    <button data-toggle="modal" data-target="#add-currency-modal" ng-click="addCurrencyTransaction(selectedCurrency.Currency.name, selectedCurrencyAmount, selectedCurrencyCourse)" class="btn-primary btn">Dodaj</button>
+                    <button ng-if="transactionMode=='buy'" data-toggle="modal" data-target="#currency-transaction-modal" ng-click="addCurrencyTransaction(selectedCurrency.Currency.name, selectedCurrencyAmount, selectedCurrencyCourse)" class="btn-primary btn">Dodaj</button>
+                    <button ng-if="transactionMode=='sell'" data-toggle="modal" data-target="#currency-transaction-modal" ng-click="sellCurrency(selectedCurrency.Currency.name, selectedCurrencyAmount, selectedCurrencyCourse)" class="btn-primary btn">Sprzedaj</button>
                 </section>
             </div>
         </div>

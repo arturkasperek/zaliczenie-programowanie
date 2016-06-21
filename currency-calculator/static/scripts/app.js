@@ -72,6 +72,10 @@ angular.module('cinkciarzApp')
                 $scope.fetchTransactions();
             });
         };
+        
+        $scope.sellCurrency = function (currencyName, amount, rate) {
+            alert('To trzeba zaimplementować :)');
+        };
 
         window.test = $http;
 
