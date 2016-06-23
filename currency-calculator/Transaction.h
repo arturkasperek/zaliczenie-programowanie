@@ -12,20 +12,8 @@ private:
 	float amount;
 	float course;
 public:
-	Transaction(std::string pCurrencyName, float pAmount, float pCourse)
-	{
-		currencySymbol = pCurrencyName;
-		amount = pAmount;
-		course = pCourse;
-	}
-	Transaction(std::string serializeObject)
-	{
-		vector<string> splittedTransaction;
-		boost::split(splittedTransaction, serializeObject, boost::is_any_of("\t "));
-		currencySymbol = splittedTransaction[0];
-		amount = stof(splittedTransaction[1]);
-		course = stof(splittedTransaction[2]);
-	}
+	Transaction(std::string pCurrencyName, float pAmount, float pCourse) : currencySymbol(pCurrencyName), amount(pAmount), course(pCourse) {}
+	Transaction(std::string serializeObject);
 
 	string getCurrencySymbol() {return currencySymbol;}
 	float getAmount() {return amount;}
@@ -44,3 +32,12 @@ public:
 
 	float calcActualTransactionState(vector<Rate>* actualCurrencyRates) {return (amount * getSalePrice(actualCurrencyRates)) - (amount * course);}
 };
+
+Transaction::Transaction(std::string serializeObject)
+{
+	vector<string> splittedTransaction;
+	boost::split(splittedTransaction, serializeObject, boost::is_any_of("\t "));
+	currencySymbol = splittedTransaction[0];
+	amount = stof(splittedTransaction[1]);
+	course = stof(splittedTransaction[2]);
+}

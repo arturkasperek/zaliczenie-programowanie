@@ -47,7 +47,7 @@ int main() {
 		bool isFileEmpty = file.peek() == std::ifstream::traits_type::eof() ? true : false;
 		vector<Profit> currencies=validDataToCurrencyObject(DataService::getDataFromUrl("https://cinkciarz.pl/currencies/index/5/json"));
 		float transactionsSumProfit;
-		while(getline(file, transactionSerialize))
+		while(getline(file, transactionSerialize)) //getting currencies we posses; counting profit
 		{
 			auto transaction = new Transaction(transactionSerialize);
 			auto currency = getSymbolCurrencyObject(currencies, transaction->getCurrencySymbol());
@@ -55,7 +55,6 @@ int main() {
 			{
 				currencies[i]+=*transaction;
 				delete transaction;
-				transaction=NULL;
 				break;
 			}
 		}
