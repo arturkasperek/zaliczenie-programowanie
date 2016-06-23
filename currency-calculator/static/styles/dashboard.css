@@ -37,35 +37,35 @@ body {
     font-weight: bold;
 }
 
-#add-currency-modal #currency-select {
+#currency-transaction-modal #currency-select {
 
 }
 
-#add-currency-modal #add-currency-submit button {
+#currency-transaction-modal #add-currency-submit button {
     width: 100%;
 }
 
-#add-currency-modal #add-currency-submit {
+#currency-transaction-modal #add-currency-submit {
     display: flex;
     align-items: flex-end;
 }
 
 
 
-#add-currency-modal select {
+#currency-transaction-modal select {
 
 }
 
-#add-currency-modal .modal-content {
+#currency-transaction-modal .modal-content {
     display: flex;
     padding: 2em;
 }
 
-#add-currency-modal .modal-content section {
+#currency-transaction-modal .modal-content section {
     width: 25%;
 }
 
-#add-currency-modal .section-description {
+#currency-transaction-modal .section-description {
     font-weight: bold;
     font-size: 115%;
     margin: 0.5em;
