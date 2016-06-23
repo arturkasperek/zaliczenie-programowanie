@@ -60,10 +60,15 @@ angular.module('cinkciarzApp')
             });
         };
 
-        $scope.addCurrencyTransaction = function (currencyName, amount, rate) {
+	$scope.getCurrencyAmount = function (currencyName, trans) {
+            for(var i=0; i<trans.length; ++i) if(trans[i].currency == currencyName) return trans[i].amount;
+            return trans[0].amount;
+	}
+        $scope.addCurrencyTransaction = function (currencyName, amount, rate, posAmount=undefined) {
             console.log(currencyName, amount, rate);
             if(amount == null) amount = 0;
             if(rate == null) rate = 0;
+            if(posAmount != undefined && amount < posAmount) if(!window.confirm("Uwaga! Zarządzono sprzedaż większej ilości waluty ("+-amount+"), niż na stanie ("+posAmount+")! Kontynuować?")) return;
             $http({
                 method: 'POST',
                 url: 'addCurrencyTransaction',
