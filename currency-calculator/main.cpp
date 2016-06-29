@@ -91,7 +91,7 @@ int main() {
 	server->serveStatic("static");
 
 #ifdef __linux__
-	//std::system("google-chrome-stable http://localhost:8080/");
+	std::system("google-chrome-stable http://localhost:8080/");
 #elif _WIN32
 	std::system("start chrome http://localhost:8080/");
 #endif
