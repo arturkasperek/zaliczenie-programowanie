@@ -1,0 +1,119 @@
+\hypertarget{classTransaction}{}\section{Transaction Class Reference}
+\label{classTransaction}\index{Transaction@{Transaction}}
+
+
+{\ttfamily \#include $<$Transaction.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classTransaction_ac258a97f4d935e11d49b21f9f3d6defe}{Transaction} (std\+::string p\+Currency\+Name, float p\+Amount, float p\+Course)
+\begin{DoxyCompactList}\small\item\em Konstruktor inicjalizujący nową transakcję. \end{DoxyCompactList}\item 
+\hyperlink{classTransaction_a8083f77bdc361afadd7c6326453d652f}{Transaction} (std\+::string serialize\+Object)
+\begin{DoxyCompactList}\small\item\em Konstruktor który inicjalizuję klasę na podstawie zserializownego stringa z transakcją. \end{DoxyCompactList}\item 
+string {\bfseries get\+Currency\+Symbol} ()\hypertarget{classTransaction_abe47140de5b1def7196e3f76a6490d4b}{}\label{classTransaction_abe47140de5b1def7196e3f76a6490d4b}
+
+\item 
+float {\bfseries get\+Amount} ()\hypertarget{classTransaction_aabf5ff6f4bfa30951d07139216dcccf2}{}\label{classTransaction_aabf5ff6f4bfa30951d07139216dcccf2}
+
+\item 
+float \hyperlink{classTransaction_a059762af615ed813c24025ca012684cd}{get\+Sale\+Price} (vector$<$ \hyperlink{structRate}{Rate} $>$ $\ast$rates)
+\begin{DoxyCompactList}\small\item\em Zwraca kurs sprzedaży waluty na podstawie obecnych kursów. \end{DoxyCompactList}\item 
+float \hyperlink{classTransaction_adcc0338a76c1889e2878eec8d282089f}{calc\+Actual\+Transaction\+State} (vector$<$ \hyperlink{structRate}{Rate} $>$ $\ast$actual\+Currency\+Rates)
+\begin{DoxyCompactList}\small\item\em Zwraca obecny bilans transakcji. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Klasa która reprezentuje pojedyńczą transakcję 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Transaction@{Transaction}!Transaction@{Transaction}}
+\index{Transaction@{Transaction}!Transaction@{Transaction}}
+\subsubsection[{\texorpdfstring{Transaction(std\+::string p\+Currency\+Name, float p\+Amount, float p\+Course)}{Transaction(std::string pCurrencyName, float pAmount, float pCourse)}}]{\setlength{\rightskip}{0pt plus 5cm}Transaction\+::\+Transaction (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{p\+Currency\+Name, }
+\item[{float}]{p\+Amount, }
+\item[{float}]{p\+Course}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classTransaction_ac258a97f4d935e11d49b21f9f3d6defe}{}\label{classTransaction_ac258a97f4d935e11d49b21f9f3d6defe}
+
+
+Konstruktor inicjalizujący nową transakcję. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Currency\+Name} & nazwa waluty. \\
+\hline
+{\em p\+Amout} & ilość kupionej waluty. \\
+\hline
+{\em p\+Course} & kurs po którym została kupiona waluta. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The test results 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+Q\+Tstyle\+\_\+\+Test(), $\sim$\+Q\+Tstyle\+\_\+\+Test(), test\+Me\+Too() and public\+Var() 
+\end{DoxySeeAlso}
+\index{Transaction@{Transaction}!Transaction@{Transaction}}
+\index{Transaction@{Transaction}!Transaction@{Transaction}}
+\subsubsection[{\texorpdfstring{Transaction(std\+::string serialize\+Object)}{Transaction(std::string serializeObject)}}]{\setlength{\rightskip}{0pt plus 5cm}Transaction\+::\+Transaction (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{serialize\+Object}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classTransaction_a8083f77bdc361afadd7c6326453d652f}{}\label{classTransaction_a8083f77bdc361afadd7c6326453d652f}
+
+
+Konstruktor który inicjalizuję klasę na podstawie zserializownego stringa z transakcją. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serialize\+Object} & zserializowany string z transakcją \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\index{Transaction@{Transaction}!calc\+Actual\+Transaction\+State@{calc\+Actual\+Transaction\+State}}
+\index{calc\+Actual\+Transaction\+State@{calc\+Actual\+Transaction\+State}!Transaction@{Transaction}}
+\subsubsection[{\texorpdfstring{calc\+Actual\+Transaction\+State(vector$<$ Rate $>$ $\ast$actual\+Currency\+Rates)}{calcActualTransactionState(vector< Rate > *actualCurrencyRates)}}]{\setlength{\rightskip}{0pt plus 5cm}float Transaction\+::calc\+Actual\+Transaction\+State (
+\begin{DoxyParamCaption}
+\item[{vector$<$ {\bf Rate} $>$ $\ast$}]{actual\+Currency\+Rates}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classTransaction_adcc0338a76c1889e2878eec8d282089f}{}\label{classTransaction_adcc0338a76c1889e2878eec8d282089f}
+
+
+Zwraca obecny bilans transakcji. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em actual\+Currency\+Rates} & wektor ze wszystkimi obecnymi kursami waluty. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Bilans transakcji (jeżeli na plusie zyskaliśmy na transkaji, jeżeli na minusie straciliśmy) 
+\end{DoxyReturn}
+\index{Transaction@{Transaction}!get\+Sale\+Price@{get\+Sale\+Price}}
+\index{get\+Sale\+Price@{get\+Sale\+Price}!Transaction@{Transaction}}
+\subsubsection[{\texorpdfstring{get\+Sale\+Price(vector$<$ Rate $>$ $\ast$rates)}{getSalePrice(vector< Rate > *rates)}}]{\setlength{\rightskip}{0pt plus 5cm}float Transaction\+::get\+Sale\+Price (
+\begin{DoxyParamCaption}
+\item[{vector$<$ {\bf Rate} $>$ $\ast$}]{rates}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classTransaction_a059762af615ed813c24025ca012684cd}{}\label{classTransaction_a059762af615ed813c24025ca012684cd}
+
+
+Zwraca kurs sprzedaży waluty na podstawie obecnych kursów. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rates} & wektor ze wszystkimi obecnymi kursami waluty. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Obecny kurs waluty po którym by teraz była sprzedana 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Transaction.\+h\end{DoxyCompactItemize}

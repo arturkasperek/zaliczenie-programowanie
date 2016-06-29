@@ -7,6 +7,10 @@ body {
     flex-wrap: wrap;
 }
 
+.transactions-container {
+    cursor: pointer;
+}
+
 .currencies-container .currency-tile, .transactions-container .transaction-tile {
     text-align: center;
     background-color: #DCEDC8;
@@ -37,36 +41,59 @@ body {
     font-weight: bold;
 }
 
-#add-currency-modal #currency-select {
+.currency-modal-class #currency-select {
 
 }
 
-#add-currency-modal #add-currency-submit button {
+.currency-modal-class #add-currency-submit button {
     width: 100%;
 }
 
-#add-currency-modal #add-currency-submit {
+.currency-modal-class #add-currency-submit {
     display: flex;
     align-items: flex-end;
 }
 
 
 
-#add-currency-modal select {
+.currency-modal-class select {
 
 }
 
-#add-currency-modal .modal-content {
+.currency-modal-class .modal-content {
     display: flex;
     padding: 2em;
 }
 
-#add-currency-modal .modal-content section {
+.currency-modal-class .modal-content section {
     width: 25%;
 }
 
-#add-currency-modal .section-description {
+.currency-modal-class .section-description {
     font-weight: bold;
     font-size: 115%;
     margin: 0.5em;
+}
+
+#spinner-buy {
+    width: 25px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    position: absolute;
+}
+
+.buy-currency span.hiddenspan {
+    visibility: hidden;
+}
+
+.transaction-tile-modal {
+    width: 30%;
+    background-color: #212121;
+    margin: 0.7em;
+    color: white;
+}
+
+.transaction-tile-modal-wrapper {
+    display: flex;
+    flex-wrap: wrap;
 }

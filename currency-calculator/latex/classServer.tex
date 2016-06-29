@@ -1,0 +1,86 @@
+\hypertarget{classServer}{}\section{Server Class Reference}
+\label{classServer}\index{Server@{Server}}
+
+
+{\ttfamily \#include $<$Server.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classServer_ad5ec9462b520e59f7ea831e157ee5e59}{Server} ()\hypertarget{classServer_ad5ec9462b520e59f7ea831e157ee5e59}{}\label{classServer_ad5ec9462b520e59f7ea831e157ee5e59}
+
+\begin{DoxyCompactList}\small\item\em Domyślny konstruktor który tworzy instancję Http\+Servera. \end{DoxyCompactList}\item 
+void \hyperlink{classServer_a7eac07d2582fa01c2671362efa955b31}{start} ()\hypertarget{classServer_a7eac07d2582fa01c2671362efa955b31}{}\label{classServer_a7eac07d2582fa01c2671362efa955b31}
+
+\begin{DoxyCompactList}\small\item\em Metoda która służy do wystartowanie serwera. \end{DoxyCompactList}\item 
+void \hyperlink{classServer_a45cfd15f8890373ffcbed86c186d1aaa}{serve\+Static} (std\+::string path\+To\+Static)
+\begin{DoxyCompactList}\small\item\em Metoda ta służy do zainicalizowania serwera który będzie serwował statyczne pliki. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\void \hyperlink{classServer_a859a8c496ff0caf27e7812d49e2ff980}{get} (std\+::string route, T \&\&callback)
+\begin{DoxyCompactList}\small\item\em Metoda dzięki której możemy dodać do serwera nową ściężkę do której będziemy mogli robić zapytania A\+J\+A\+Xowe. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\void \hyperlink{classServer_a0cfbd63c4bd68875744b834cbe8f4b91}{post} (std\+::string route, T \&\&callback)
+\begin{DoxyCompactList}\small\item\em Metoda dzięki której możemy dodać do serwera nową ściężkę do której będziemy mogli robić zapytania A\+J\+A\+Xowe. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Klasa ta jest rodzajem adaptera względem Simple\+Web\+::\+Server, dzięki niej mamy prosty interfejs do postawienia serwera 
+
+\subsection{Member Function Documentation}
+\index{Server@{Server}!get@{get}}
+\index{get@{get}!Server@{Server}}
+\subsubsection[{\texorpdfstring{get(std\+::string route, T \&\&callback)}{get(std::string route, T &&callback)}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ void Server\+::get (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{route, }
+\item[{T \&\&}]{callback}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classServer_a859a8c496ff0caf27e7812d49e2ff980}{}\label{classServer_a859a8c496ff0caf27e7812d49e2ff980}
+
+
+Metoda dzięki której możemy dodać do serwera nową ściężkę do której będziemy mogli robić zapytania A\+J\+A\+Xowe. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em route} & ścieżka pod którym będziemy mogli robić zapytanie H\+T\+TP typu G\+ET. \\
+\hline
+{\em callback} & jest co nasz callback który będzie obsługiwał zapytanie. \\
+\hline
+\end{DoxyParams}
+\index{Server@{Server}!post@{post}}
+\index{post@{post}!Server@{Server}}
+\subsubsection[{\texorpdfstring{post(std\+::string route, T \&\&callback)}{post(std::string route, T &&callback)}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ void Server\+::post (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{route, }
+\item[{T \&\&}]{callback}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classServer_a0cfbd63c4bd68875744b834cbe8f4b91}{}\label{classServer_a0cfbd63c4bd68875744b834cbe8f4b91}
+
+
+Metoda dzięki której możemy dodać do serwera nową ściężkę do której będziemy mogli robić zapytania A\+J\+A\+Xowe. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em route} & ścieżka pod którym będziemy mogli robić zapytanie H\+T\+TP typu P\+O\+ST. \\
+\hline
+{\em callback} & jest co nasz callback który będzie obsługiwał zapytanie. \\
+\hline
+\end{DoxyParams}
+\index{Server@{Server}!serve\+Static@{serve\+Static}}
+\index{serve\+Static@{serve\+Static}!Server@{Server}}
+\subsubsection[{\texorpdfstring{serve\+Static(std\+::string path\+To\+Static)}{serveStatic(std::string pathToStatic)}}]{\setlength{\rightskip}{0pt plus 5cm}void Server\+::serve\+Static (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{path\+To\+Static}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classServer_a45cfd15f8890373ffcbed86c186d1aaa}{}\label{classServer_a45cfd15f8890373ffcbed86c186d1aaa}
+
+
+Metoda ta służy do zainicalizowania serwera który będzie serwował statyczne pliki. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path\+To\+Static} & ścieżka do folderu w którym są statyczne pliki. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Server.\+h\end{DoxyCompactItemize}

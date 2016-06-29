@@ -1,8 +1,11 @@
 <div>
     <div class="control-panel" style="padding: 2em 0em">
-        <button ng-click="openAddCurrencyModal()" data-toggle="modal" data-target="#add-currency-modal" class="btn-primary btn">Kupiłem walutę</button>
+        <button style="position: relative; visibility: {{historyModeOn ? 'hidden' : 'visible'}}" data-toggle="modal" data-target="#add-currency-modal" class="btn-primary buy-currency btn">
+            <span class="{{addTransactionCompleted ? '' : 'hiddenspan'}}">Kupiłem walutę</span>
+            <img ng-if="!addTransactionCompleted" id="spinner-buy" src="../assets/spinner.gif">
+        </button>
     </div>
-    <div class="modal fade" id="add-currency-modal" role="dialog">
+    <div class="modal fade currency-modal-class" id="add-currency-modal" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <section id="currency-select">
@@ -24,21 +27,117 @@
             </div>
         </div>
     </div>
-    <h3 style="color: #DCEDC8; text-align: center">Lista transakcji</h3>
-    <div class="transaction-tile" style="width: 100%; background-color: {{transactionsSumProfit < 0 ? '#D32F2F' : '#689F38'}}; text-align: center; font-weight: 120%"><span>Suma {{transactionsSumProfit <=0 ? 'strat' : 'zysków'}}</span></br><span style="font-weight: bold;">{{transactionsSumProfit}} zł</span></div>
-    <div class="transactions-container">
-        <div class="transaction-tile" style="background-color: {{transaction.profit < 0 ? '#E53935' : ''}}" ng-repeat="transaction in transactions">
+    <div data-backdrop="static"  class="modal fade" id="currency-manager-modal" role="dialog">
+        <div class="modal-dialog">
+            <div style="background-color: #151111;" class="modal-content">
+                <i ng-click="hideFirstModal()" style="cursor: pointer; position: absolute;top: 1em;left: 1em;font-size: 115%;color: red;" class="fa fa-times" aria-hidden="true"></i>
+                <p style="color: white;text-align: center;font-size: 170%; font-weight: bold">{{managedCurrency.currencySymbol}}</p>
+                <div class="transaction-tile-modal-wrapper">
+                    <div style="padding: 0.7em;background-color: {{transaction.profit < 0 ? '#E53935' : '#9CCC65'}};border-radius: 0.2em;" ng-repeat="transaction in  managedCurrency.transactions" class="transaction-tile-modal">
+                        <p style="font-weight: bold;font-size: 110%;">Ilość</p>
+                        <p>{{ transaction.amount }}</p>
+                        <p style="font-weight: bold;font-size: 110%;">Zysk</p>
+                        <p>{{ transaction.profit }}</p>
+                        <p style="font-weight: bold;font-size: 110%;">Kurs kupna</p>
+                        <p>{{ transaction.rate }}</p>
+                        <div style="text-align: center; margin: 0 auto" class="btn-wrapper">
+                            <button style="position: relative" ng-click="selectCurrentSellTransaction(transaction)" data-toggle="modal" data-target="#sell-currency-modal" class="btn-primary buy-currency btn">
+                                Sprzedaj
+                            </button>
+                        </div>
+                    </div>
+                    <div data-backdrop="static" class="modal fade currency-modal-class" id="sell-currency-modal" role="dialog">
+                        <div class="modal-dialog">
+                            <div style="display: flex; align-items: flex-end;position: relative" class="modal-content">
+                                <i ng-click="hideSecondModal()" style="cursor: pointer; position: absolute;top: 1em;left: 1em;font-size: 115%;color: red;" class="fa fa-times" aria-hidden="true"></i>
+                                <section id="amount-select-modal">
+                                    <div class="section-description">Ilość</div>
+                                    <input ng-change="selectedCurrencyAmountChange()" ng-model="selectedCurrencyAmount" type="number" class="form-control" placeholder="" aria-describedby="basic-addon1">
+                                </section>
+                                <section id="course-select-modal">
+                                    <div class="section-description">Kurs</div>
+                                    <input ng-model="selectedCurrencyCourse" type="number" class="form-control" placeholder="" aria-describedby="basic-addon1">
+                                </section>
+                                <section id="add-currency-submit-modal">
+                                    <button ng-click="sellCurrency(selectedCurrencyAmount, selectedCurrencyCourse)" class="btn-primary btn">Sprzedaj</button>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div ng-click="historyModeOn=!historyModeOn" style="float: right;">
+            <i ng-if="!historyModeOn" style="color: white;font-size: 160%;cursor: pointer;" class="fa fa-history" aria-hidden="true"></i>
+            <i ng-if="historyModeOn" style="color: white;font-size: 160%;cursor: pointer;" class="fa fa-list" aria-hidden="true"></i>
+        </div>
+    </div>
+    <h3 ng-if="!historyModeOn" style="color: #DCEDC8; text-align: center">Lista walut</h3>
+    <h3 ng-if="historyModeOn" style="color: #DCEDC8; text-align: center">Historia transakcji</h3>
+    <div ng-if="historyModeOn" class="transaction-tile" style="width: 100%; background-color: {{transactionsSumProfit < 0 ? '#D32F2F' : '#689F38'}}; text-align: center; font-weight: 120%"><span>Suma {{transactionsSumProfit <=0 ? 'strat' : 'zysków'}}</span></br><span style="font-weight: bold;">{{transactionsSumProfit}} zł</span></div>
+    <div ng-if="!historyModeOn" class="transactions-container">
+        <div ng-click="onCurrencyTileClick(currencyObj)" data-toggle="modal" data-target="#currency-manager-modal" class="transaction-tile" style="background-color: {{currencyObj.profit < 0 ? '#E53935' : ''}}" ng-repeat="(currencyName, currencyObj) in transactionsByCurrency" ng-if="currencyObj.amount > 0">
             <div class="transaction-wrapper">
                 <div class="col-sm-12 name-wrapper">
-                    <span>{{ transaction.currency }}</span>
+                    <span>{{ currencyName }}</span>
                 </div>
                 <div class="col-sm-6">
                     Ilość </br>
-                    {{ transaction.amount }}
+                    {{ currencyObj.amount }}
+                </div>
+                <div class="col-sm-12">
+                    Śr. kurs kupna </br>
+                    <span style="font-weight: bold">{{currencyObj.middleRate}} zł</span>
+                </div>
+                <div class="col-sm-12" style="text-align: center">
+                    <span style="font-weight: bold">{{ currencyObj.profit < 0 ? 'Straciłeś' : 'Zyskałeś' }}</span></br>
+                    {{ currencyObj.profit }} zł
+                    <button ng-click="onTileSellClick($event, currencyObj)" style="margin-bottom: 0.5em; width: 100%" data-toggle="modal" data-target="#sell-currency-two" class="btn-primary buy-currency btn">
+                        Sprzedaj
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade currency-modal-class" id="sell-currency-two" role="dialog">
+        <div class="modal-dialog">
+            <div style="display: flex; align-items: flex-end;position: relative;background-color: {{!profitable ? '#E53935' : '#9CCC65'}};" class="modal-content">
+                <section id="amount-select-modal">
+                    <div class="section-description">Ilość</div>
+                    <input ng-change="selectedCurrencyAmountChange(selectedCurrencyCourse)" ng-model="selectedCurrencyAmount" type="number" class="form-control" placeholder="" aria-describedby="basic-addon1">
+                </section>
+                <section id="course-select-modal">
+                    <div class="section-description">Kurs</div>
+                    <input ng-change="selectedCurrencyAmountChange(selectedCurrencyCourse, true)" ng-model="selectedCurrencyCourse" type="number" class="form-control" placeholder="" aria-describedby="basic-addon1">
+                </section>
+                <section id="add-currency-submit-modal">
+                    <button ng-click="sellCurrencyAll(selectedCurrencyAmount, selectedCurrencyCourse)" class="btn-primary btn">Sprzedaj</button>
+                </section>
+            </div>
+        </div>
+    </div>
+    <div style="cursor: default" ng-if="historyModeOn" class="transactions-container">
+        <div style="background-color: {{transaction.profit < 0 ? '#E53935' : '#9CCC65'}};cursor: default" class="transaction-tile" ng-repeat="transaction in historySell track by $index">
+            <div class="transaction-wrapper">
+                <div class="col-sm-12 name-wrapper">
+                    <span>{{ transaction.symbol }}</span>
                 </div>
                 <div class="col-sm-6">
-                    Kurs kupna </br>
-                    {{ transaction.rate }}
+                    Ilość </br>
+                    <span style="font-weight: bold">{{ transaction.amount }}</span>
+                </div>
+                <div style="text-align: center" class="col-sm-12">Kursy</div>
+                <div style="display: flex" class="col-sm-12">
+                    <div style="width: 50%">
+                        <div>Sprzedarz</div>
+                        <div style="font-weight: bold">{{transaction.sell}}</div>
+                    </div>
+                    <div style="width: 50%">
+                        <div style="text-align: right">Kupno</div>
+                        <div style="text-align: right; font-weight: bold">{{transaction.buy}}</div>
+                    </div>
                 </div>
                 <div class="col-sm-12" style="text-align: center">
                     <span style="font-weight: bold">{{ transaction.profit < 0 ? 'Straciłeś' : 'Zyskałeś' }}</span></br>
